@@ -5,6 +5,9 @@ import java.util.Scanner;
 public class Main {
     private static Scanner s;
 
+
+//    Каждое задание реализованно отдельной функцией
+//    и для запуска необходимо прописывать вызов нужной функции в главной функции
     public static void main(String[] args) {
         s = new Scanner(System.in);
         e9d();
