@@ -38,8 +38,7 @@ public class Main {
             res += pm*t;
             pm*= -1;
             n--;
-            // *
-            k += 2;
+            k += 2; //Мне больше нравится, когда значение зависит от номера шага.
         }
         System.out.println("Sn = " + res);
     }
@@ -105,8 +104,8 @@ public class Main {
         int t2 = 2;
         double res = 0;
         while (i <= m) {
-            t1 *= (i - 1);
-            t2 *= (2 * i - 1) * 2 * i;
+            t1 *= (i - 1);//Будет быстро расти
+            t2 *= (2 * i - 1) * 2 * i;//Будет быстро расти
             res += Math.pow(t1, 2) / t2;
             i++;
             System.out.println(t1);
@@ -125,7 +124,7 @@ public class Main {
         double res = 1,
                 pm = -1;
         while (i <= m) {
-            t *= 3;
+            t *= 3;//Будет быстро расти
             res += pm / ((2 * i + 1) * t);
             pm *= -1;
             i++;
@@ -142,7 +141,7 @@ public class Main {
         double res = 0;
         while (i <= m) {
             res += 1.0 / ((2 * i + 1) * t);
-            t *= 9;
+            t *= 9;//Будет быстро расти
             i++;
         }
         System.out.println(res);
@@ -161,7 +160,7 @@ public class Main {
         for(int i = 1; i<= k; i++,
                 tk *= i,
                 tx *= -1*x*x)
-            res += (double)tx/(tk*(2*i + 1));
+            res += (double)tx/(tk*(2*i + 1));//В этом задании я как раз хотела избежать факториалов, степеней в отдельных переменных
         System.out.println(res);
     }
 //    Упражнение 10 б)
@@ -175,7 +174,7 @@ public class Main {
         tx = tpx = -1 * (int)Math.pow(x, 5);
         tk = 2;
         for(int i = 1; i<=k; i++, tk *= 2*i*(2*i-1), tx *= tpx)
-            res += (double)tx/(tk*(4*i+1));
+            res += (double)tx/(tk*(4*i+1));// Та же мысль
         System.out.println(res);
     }
 }
