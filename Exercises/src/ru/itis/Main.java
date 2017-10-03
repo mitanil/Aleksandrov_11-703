@@ -10,7 +10,7 @@ public class Main {
 //    и для запуска необходимо прописывать вызов нужной функции в главной функции
     public static void main(String[] args) {
         s = new Scanner(System.in);
-        e9d();
+        e10b();
     }
 
     //    Упражнение 4 а)
@@ -148,4 +148,34 @@ public class Main {
         System.out.println(res);
     }
 
+//    Упражнение 10 а)
+    private static void e10a(){
+        int x, tx, tk, k;
+        double res;
+        System.out.println("Введите k и x: ");
+        k = s.nextInt();
+        x = s.nextInt();
+        res = x;
+        tx = -1*x*x*x;
+        tk = 1;
+        for(int i = 1; i<= k; i++,
+                tk *= i,
+                tx *= -1*x*x)
+            res += (double)tx/(tk*(2*i + 1));
+        System.out.println(res);
+    }
+//    Упражнение 10 б)
+    private static void e10b(){
+        int x, k, tx, tpx, tk;
+        double res;
+        System.out.println("Введите k и x: ");
+        k = s.nextInt();
+        x = s.nextInt();
+        res = x;
+        tx = tpx = -1 * (int)Math.pow(x, 5);
+        tk = 2;
+        for(int i = 1; i<=k; i++, tk *= 2*i*(2*i-1), tx *= tpx)
+            res += (double)tx/(tk*(4*i+1));
+        System.out.println(res);
+    }
 }
