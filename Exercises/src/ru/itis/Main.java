@@ -38,6 +38,7 @@ public class Main {
             res += pm*t;
             pm*= -1;
             n--;
+            // *
             k += 2;
         }
         System.out.println("Sn = " + res);
