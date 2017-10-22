@@ -411,8 +411,82 @@ public class Main {
         System.out.println(res);
     }
 
+    
     //    Упражнение 23 a)
     private static void e23a(){
-        
+        System.out.println("Введите a, b и x, при 0 < a < b: ");
+        int a = s.nextInt(),
+            b = s.nextInt(),
+            x = s.nextInt(),
+            t1 = a,
+            t2 = a,
+            vk = t1 + t2;
+        if(a <= 0 || a >= b){
+            System.out.println("a <= 0 или a >= b");
+            return;
+        }
+        double res = Math.log10(t1*x);
+        while (vk <= b){
+            res += Math.log10(vk*x);
+            t1 = t2;
+            t2 = vk;
+            vk = t1 + t2;
+        }
+        System.out.println(res);
+    }
+
+    //    Упражнение 23 б)
+    private static void e23b(){
+        System.out.println("Введите a, b и x, при 0 < a < b: ");
+        int a = s.nextInt(),
+            b = s.nextInt(),
+            x = s.nextInt(),
+            t1 = a,
+            t2 = a,
+            t3 = (int) Math.pow(2, a),
+            vk = t1 + t2,
+            pm = -1;
+        if(a <= 0 || a >= b){
+            System.out.println("a <= 0 или a >= b");
+            return;
+        }
+        if(a%2 == 0)pm = 1;
+        double res = pm * t1/t3*Math.pow(Math.cos(t1*x), 2);
+        while(vk <= b){
+            t3 *= 2;
+            res = pm * vk/t3*Math.pow(Math.cos(vk*x), 2);
+            t1 = t2;
+            t2 = vk;
+            vk = t1 + t2;
+        }
+        System.out.println(res);
+    }
+
+    //    Упражнение 29 б)
+    private static void e29b(){
+        final double E = 0.0001;
+        int n = 2;
+        double  t1 = Math.cos(0),
+                t2 = Math.cos(t1);
+        while(Math.abs(t1*t2)> E){
+            t1 = t2;
+            t2 = Math.cos(t1);
+            n++;
+        }
+        System.out.println(n);
+    }
+
+    //    Упражнение 27
+    private static void e27(){
+        final double E = 0.0001;
+        System.out.println("Введите x при 0 < x < 2: ");
+        double  x = s.nextDouble(),
+                a = 1,
+                b = 1 - x;
+        while(Math.abs(b)>E){
+            a = a*(1 + b);
+            b = b*b;
+        }
+        System.out.println(a);
     }
 }
