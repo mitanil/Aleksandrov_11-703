@@ -10,7 +10,7 @@ public class Main {
 //    и для запуска необходимо прописывать вызов нужной функции в главной функции
     public static void main(String[] args) {
         s = new Scanner(System.in);
-        e10b();
+        e12c();
     }
 
     //    Упражнение 4 а)
@@ -33,12 +33,11 @@ public class Main {
         float res = 0.0f;
         int pm = 1;
         int k = 1;
-        while (n >= 0) {
-            float t = 1.0f / k;
+        while (k <= n) {
+            float t = 1.0f / (2*k - 1);
             res += pm*t;
             pm*= -1;
-            n--;
-            k += 2; //Мне больше нравится, когда значение зависит от номера шага.
+            k++;
         }
         System.out.println("Sn = " + res);
     }
@@ -53,22 +52,6 @@ public class Main {
             catalansConstant = addElementOfCatalansConstant(catalansConstant, i, pm);
             pm *= -1;
             i++;
-        }
-        System.out.println(catalansConstant);
-    }
-
-    //    Упражнение 6 б)
-    private static void e6b() {
-        double e = Math.pow(10, -5);
-        int n = 1, pm = 1;
-        double catalansConstant = 0;
-        while (true) {
-            catalansConstant = addElementOfCatalansConstant(catalansConstant, n, pm);
-            pm *= -1;
-            n++;
-            if (catalansConstant <= e) {
-                break;
-            }
         }
         System.out.println(catalansConstant);
     }
@@ -97,20 +80,17 @@ public class Main {
 
     //    упражнение 9 б)
     private static void e9b() {
-        System.out.println("Введите m: ");
+        System.out.println("Введите n: ");
         int m = s.nextInt();
         int i = 2;
         int t1 = 1;
         int t2 = 2;
-        double res = 0;
-        while (i <= m) {
-            t1 *= (i - 1);//Будет быстро расти
-            t2 *= (2 * i - 1) * 2 * i;//Будет быстро расти
+        double res = 0, t = 0.5;
+        while (i <= m) {//TODO узнать что не так.
+            t1 *= (i - 1);
+            t2 *= (2 * i - 1) * 2 * i;
             res += Math.pow(t1, 2) / t2;
             i++;
-            System.out.println(t1);
-            System.out.println(t2);
-            System.out.println(res);
         }
         System.out.println(res);
     }
@@ -124,7 +104,7 @@ public class Main {
         double res = 1,
                 pm = -1;
         while (i <= m) {
-            t *= 3;//Будет быстро расти
+            t *= 3;
             res += pm / ((2 * i + 1) * t);
             pm *= -1;
             i++;
@@ -136,12 +116,12 @@ public class Main {
     private static void e9d() {
         System.out.println("Ввеите m: ");
         int m = s.nextInt(),
-                i = 0,
-                t = 1;
+            i = 0,
+            t = 1;
         double res = 0;
         while (i <= m) {
             res += 1.0 / ((2 * i + 1) * t);
-            t *= 9;//Будет быстро расти
+            t *= 9;
             i++;
         }
         System.out.println(res);
@@ -150,31 +130,289 @@ public class Main {
 //    Упражнение 10 а)
     private static void e10a(){
         int x, tx, tk, k;
-        double res;
+        double res, t;
         System.out.println("Введите k и x: ");
         k = s.nextInt();
         x = s.nextInt();
-        res = x;
+        t = x;
+        res = t;
         tx = -1*x*x*x;
         tk = 1;
-        for(int i = 1; i<= k; i++,
-                tk *= i,
-                tx *= -1*x*x)
-            res += (double)tx/(tk*(2*i + 1));//В этом задании я как раз хотела избежать факториалов, степеней в отдельных переменных
+        int i = 1;
+        while (i<= k) {
+            t *= (double)(-1 * x * x) / (i * (2 * i + 1));
+            res += t;
+            i++;
+        }
         System.out.println(res);
     }
 //    Упражнение 10 б)
     private static void e10b(){
-        int x, k, tx, tpx, tk;
-        double res;
+        int x, k, tpx;
+        double res, t;
         System.out.println("Введите k и x: ");
         k = s.nextInt();
         x = s.nextInt();
-        res = x;
-        tx = tpx = -1 * (int)Math.pow(x, 5);
-        tk = 2;
-        for(int i = 1; i<=k; i++, tk *= 2*i*(2*i-1), tx *= tpx)
-            res += (double)tx/(tk*(4*i+1));// Та же мысль
+        t = x;
+        res = t;
+        tpx = -1 * (int)Math.pow(x, 4);
+        int i = 1;
+        while (i<=k) {
+            t *= (double)tpx / (2 * i * (2 * i - 1) * (4 * i - 1));
+            res += t;
+            i++;
+        }
         System.out.println(res);
+    }
+
+    //    Упражнение 10 в)
+    private static void e10c(){
+        int x, k;
+        System.out.println("Введите n и x: ");
+        double res = 0, t = 1;
+        k = s.nextInt();
+        x = s.nextInt();
+        int i = 1;
+        while (i <= k) {
+            t *= (double) (x * x * (2 * i - 1)) / (2 * i);
+            res += t;
+            i++;
+        }
+        System.out.println(res);
+    }
+
+    //    Упражнение 10 г)
+    private static void e10d(){
+        System.out.println("Введите n и x: ");
+        int n = 2 * s.nextInt();
+        int x = s.nextInt();
+        double res = 0, t1 = 1, t2 = 1;
+        int i = 1;
+        boolean isEven = false;
+        while (i<=n) {
+            t1 *= x;
+            t2 *= x;
+            if(isEven){
+                t1 /= i;
+                res += t1;
+            }else{
+                t2 /= i;
+                res += t2;
+            }
+            i++;
+            isEven = !isEven;
+        }
+        System.out.println(res);
+    }
+
+    //    Упражнение 5 б)
+    private static void e5b(){
+        final double E = 0.0001;
+        final double PI = 3.1415926;
+        final double Sn = PI/4;
+        double res = 1;
+        int pm = -1;
+        int n = 2;
+        System.out.println("Pi/4 = " + Sn);
+        while (Math.abs(Sn - res) >= E) {
+            res += (double) pm / (2 * n - 1);
+            n++;
+            pm *= -1;
+        }
+        System.out.println("Sn = " + res);
+        System.out.println(n);
+    }
+
+    //    Упражнение 7
+    private static void e7(){
+        final double E = 0.001;
+        final double PI = 3.1415926;
+        double res = 1;
+        final double Rn = PI/2;
+        int n = 1;
+        System.out.println("E = " + E);
+        System.out.println("Pi/4 = " + Rn);
+        while (Math.abs(res - Rn) >= E) {
+            res *= (double) (4 * n * n) / (4 * n * n - 1);
+            n++;
+        }
+        System.out.println("Rn = " + res);
+        System.out.println(n);
+    }
+
+    //    Упражнение 6 б)
+    private static void e6b(){
+        final double E = 0.0001;
+        double res = 0, t = 1;
+        int n = 1, pm = 1;
+        while (Math.abs(t) > E) {
+            res += t;
+            t = (double) pm / ((2 * n - 1) * (2 * n - 1));
+            n++;
+            pm *= -1;
+        }
+        System.out.println("G = " + res);
+    }
+
+    //    Упражнение 12 а)
+    private static void e12a(){
+        final double E = 0.0001;
+        System.out.println("Введите x: ");
+        int n = 1, x = s.nextInt();
+        double res = 0, t = 1;
+        while (t >= E) {
+            res += t;
+            t *= (double) x / n;
+            n++;
+        }
+        System.out.println(res);
+    }
+
+    //    Упражнение 12 б)
+    private static void e12b(){
+        final double E = 0.0001;
+        System.out.println("Ведите х: ");
+        int x = s.nextInt(), n = 1, pm = -1;
+        double res = 0, t = x;
+        while (Math.abs(t) >= E) {
+            res += t;
+            t *= (double) (x * x) / ((2 * n + 1) * (2 * n));
+            n++;
+            pm *= -1;
+        }
+        System.out.println(res);
+    }
+
+    //    Упражнение 12 в)
+    private static void e12c(){
+        final double E = 0.0001;
+        System.out.println("Ведите х: ");
+        int  n = 2, pm = 1;
+        double x = s.nextDouble(), res = 0, t = (double)x/n;
+        while (Math.abs(t / n) > E) {
+            res += t / n;
+            t *= (double) pm * x;
+            n++;
+            pm *= -1;
+        }
+
+        System.out.println(res);
+    }
+
+    //    Упражнение 12 г)
+    private static void e12d(){
+        final double E = 0.0001;
+        System.out.println("Dведите x: ");
+        int x = s.nextInt(), n = 0, pm = -1;
+        double res = 0, t = pm*x*x/2;
+        while (Math.abs(t)>E){
+            res += t;
+            n++;
+            pm *= -1;
+            t *= x*x/((n+1)* (n+2));
+        }
+        System.out.println(res);
+    }
+
+    //    Упражнение 11 б)
+    private static void e11b(){
+        System.out.println("Введите n: ");
+        int i = 0,
+            n = s.nextInt();
+        double res = 0,
+            t = 1;
+        while(i<=n){
+            t *= Math.cos(i)/Math.sin(i);
+            res += t;
+            i++;
+        }
+        System.out.println(res);
+    }
+
+    //    Упражнение 11 г)
+    private static void e11d(){
+
+        System.out.println("Введите n: ");
+        int i = 1,
+                n = s.nextInt();
+        double res = 0,
+                t = 1;
+        while(i<=n){
+            t *= Math.sin(i)/Math.cos(i);
+            res *= t;
+            i++;
+        }
+        System.out.println(res);
+    }
+
+    //    Упражнение 14 a)
+    private static void e14a(){
+        System.out.println("Введите x: ");
+        final double E = 0.0001;
+        int k = 1,
+            pm = -1,
+            x = s.nextInt();
+        double res = 0, t = 1;
+        while(t>E){
+            res += pm * t * Math.pow(Math.sin(t * x), 2);
+            k++;
+            t /= k;
+            pm *= -1;
+        }
+    }
+
+    //    Упражнение 14 б)
+    private static void e14b(){
+        final double E = 0.0001;
+        System.out.println("Введите x и а > 1: ");
+        int x = s.nextInt(),
+            a = s.nextInt();
+        if(a<=1){
+            System.out.println("a <= 1");
+            return;
+        }
+        double res = 0,
+            t = 1/a;
+        while(t>E){
+            res += t * Math.log10(t * x);
+            t /= a;
+        }
+    }
+
+    //    Упражнение 24 a)
+    private static void e24a(){
+        System.out.println("Введите m и x: ");
+        final double E = 0.0001;
+        int m = s.nextInt(), x = s.nextInt();
+        int n = 1;
+        double res = 0, t = 1;
+        while (n<=m && (Math.sin(n*x)/t)>=E){
+            res += Math.sin(n*x)/t;
+            n++;
+            t *= n;
+        }
+        System.out.println(res);
+    }
+
+    //    Упражнение 24 б)
+    private static void e24b(){
+        System.out.println("Введите m и x, при 0 < x < pi/2: ");
+        int m = s.nextInt(), x = s.nextInt(), n = 1, pm = 1;
+        final double E = 0.0001;
+        if(x <= 0 || x >= Math.PI/4 ){
+            System.out.println("x<=0 или x >= pi/4");
+            return;
+        }
+        double res = 0;
+        while(n<=m && (Math.cos(2*n - 1) * x/n)>=E){
+            res += pm * Math.cos(2*n - 1) * x/n;
+            pm*= -1;
+        }
+        System.out.println(res);
+    }
+
+    //    Упражнение 23 a)
+    private static void e23a(){
+        
     }
 }
