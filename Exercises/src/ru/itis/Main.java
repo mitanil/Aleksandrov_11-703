@@ -569,4 +569,28 @@ public class Main {
 
     }
 
+    //    Упражнение 20 д)
+    private static void e20d(){
+        System.out.println("Введите n и 8 переменных: ");
+        int x0, x1, x2, xk = 0, y1, y2, yk = 0, n = s.nextInt(), i = 3, t1, t2, t3, t4, t5;
+        x0 = s.nextInt();
+        x1 = y1 = s.nextInt();
+        x2 = y2 = s.nextInt();
+        t1 = s.nextInt();
+        t2 = s.nextInt();
+        t3 = s.nextInt();
+        t4 = s.nextInt();
+        t5 = s.nextInt();
+        while (i <= n) {
+            xk = x2 * t1 + y1 * t2 + x0 * t3;
+            yk = x2 * t4 + y1 * t5;
+            x0 = x1;
+            x1 = x2;
+            x2 = xk;
+            y1 = y2;
+            y2 = yk;
+            i++;
+        }
+        System.out.println("x = " + xk + " y = " + yk);
+    }
 }
