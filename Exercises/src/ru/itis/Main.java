@@ -521,4 +521,52 @@ public class Main {
         System.out.println(a);
         System.out.println(a);
     }
+
+    //    Упражнение 25
+    private static void e25(){
+        System.out.println("Введите x: ");
+        final double E = 0.0001;
+        double x = s.nextDouble(), t, y;
+        if(x >= 1)
+            t = 1.0/3.0;
+        else
+            t = x;
+        y = t - 1.0/3.0*(t - x/(t*t));
+        while(Math.abs(y - t) > E){
+            t = y;
+            y = t - 1.0/3.0*(t - x/(t*t));
+        }
+        System.out.println(y);
+    }
+
+    //    Упражнение 30 а)
+    private static void e30a() {
+        final double E = 0.0001;
+        double x = 1.1, xn, f, fsh;
+        f = Math.pow(x, 5) - x - 0.002;
+        fsh = Math.pow(x, 4) * 5 - 1;
+        xn = x - f/fsh;
+        while (Math.abs(xn - x) > E){
+            x = xn;
+            f = Math.pow(x, 5) - x - 0.002;
+            fsh = Math.pow(x, 4) * 5 - 1;
+            xn = x - f/fsh;
+        }
+        System.out.println(f);
+    }
+
+    //    Упражнение 32 б)
+    private static void e32b(){
+        System.out.println("Введите a: ");
+        final double E = 0.0001;
+        double  x = s.nextDouble(),
+                xn = 1.0 + 9.0*Math.sin(x)/2.0;
+        while(Math.abs(xn - x) > E){
+            x = xn;
+            xn = 1.0 + 9.0*Math.sin(x)/2.0;
+        }
+        System.out.println(xn);
+
+    }
+
 }
