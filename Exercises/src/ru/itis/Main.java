@@ -92,7 +92,7 @@ public class Main {
         System.out.println(res);
     }
 
-    //    упражнение 9 в)
+    //    упражнение 9 в) //-
     public static void e9c() {
         System.out.println("Введите m: ");
         int m = s.nextInt(),
@@ -101,7 +101,7 @@ public class Main {
         double res = 1,
                 pm = -1;
         while (i <= m) {
-            t *= 3;
+            t *= 3; //плохо
             res += pm / ((2 * i + 1) * t);
             pm *= -1;
             i++;
@@ -109,7 +109,7 @@ public class Main {
         System.out.println(res);
     }
 
-    //    упражнение 9 г)
+    //    упражнение 9 г) //-
     private static void e9d() {
         System.out.println("Ввеите m: ");
         int m = s.nextInt(),
@@ -118,13 +118,13 @@ public class Main {
         double res = 0;
         while (i <= m) {
             res += 1.0 / ((2 * i + 1) * t);
-            t *= 9;
+            t *= 9; //плохо
             i++;
         }
         System.out.println(res);
     }
 
-//    Упражнение 10 а)
+//    Упражнение 10 а)//-
     private static void e10a(){
         int x, tx, tk, k;
         double res, t;
@@ -137,13 +137,13 @@ public class Main {
         tk = 1;
         int i = 1;
         while (i<= k) {
-            t *= (double)(-1 * x * x) / (i * (2 * i + 1));
+            t *= (double)(-1 * x * x) / (i * (2 * i + 1));//неверная формула
             res += t;
             i++;
         }
         System.out.println(res);
     }
-//    Упражнение 10 б)
+//    Упражнение 10 б)//-
     private static void e10b(){
         int x, k, tpx;
         double res, t;
@@ -155,7 +155,7 @@ public class Main {
         tpx = -1 * (int)Math.pow(x, 4);
         int i = 1;
         while (i<=k) {
-            t *= (double)tpx / (2 * i * (2 * i - 1) * (4 * i - 1));
+            t *= (double)tpx / (2 * i * (2 * i - 1) * (4 * i - 1));//неверная формула
             res += t;
             i++;
         }
@@ -178,7 +178,7 @@ public class Main {
         System.out.println(res);
     }
 
-    //    Упражнение 10 г)
+    //    Упражнение 10 г) //-
     private static void e10d(){
         System.out.println("Введите n и x: ");
         int n = 2 * s.nextInt();
@@ -187,8 +187,8 @@ public class Main {
         int i = 1;
         boolean isEven = false;
         while (i<=n) {
-            t1 *= x;
-            t2 *= x;
+            t1 *= x; //плохо   ЗАМЕЧАНИЕ!!! Эти решения я уже видела!
+            t2 *= x;  //плохо
             if(isEven){
                 t1 /= i;
                 res += t1;
@@ -280,7 +280,7 @@ public class Main {
         System.out.println(res);
     }
 
-    //    Упражнение 12 в)
+    //    Упражнение 12 в)//-
     private static void e12c(){
         final double E = 0.0001;
         System.out.println("Ведите х: ");
@@ -291,12 +291,12 @@ public class Main {
             t *= (double) pm * x;
             n++;
             pm *= -1;
-        }
+        }  //какая-то чехарда в этом коде
 
         System.out.println(res);
     }
 
-    //    Упражнение 12 г)
+    //    Упражнение 12 г)//-
     private static void e12d(){
         final double E = 0.0001;
         System.out.println("Dведите x: ");
@@ -306,7 +306,7 @@ public class Main {
             res += t;
             n++;
             pm *= -1;
-            t *= x*x/((n+1)* (n+2));
+            t *= x*x/((n+1)* (n+2));// это не вычисление четного факториала
         }
         System.out.println(res);
     }
@@ -376,7 +376,7 @@ public class Main {
         }
     }
 
-    //    Упражнение 24 a)
+    //    Упражнение 24 a) //-
     private static void e24a(){
         System.out.println("Введите m и x: ");
         final double E = 0.0001;
@@ -384,14 +384,14 @@ public class Main {
         int n = 1;
         double res = 0, t = 1;
         while (n<=m && (Math.sin(n*x)/t)>=E){
-            res += Math.sin(n*x)/t;
+            res += Math.sin(n*x)/t;  //неправильно понято условие задачи
             n++;
             t *= n;
         }
         System.out.println(res);
     }
 
-    //    Упражнение 24 б)
+    //    Упражнение 24 б)//-
     private static void e24b(){
         System.out.println("Введите m и x, при 0 < x < pi/2: ");
         int m = s.nextInt(), x = s.nextInt(), n = 1, pm = 1;
@@ -402,7 +402,7 @@ public class Main {
         }
         double res = 0;
         while(n<=m && (Math.cos(2*n - 1) * x/n)>=E){
-            res += pm * Math.cos(2*n - 1) * x/n;
+            res += pm * Math.cos(2*n - 1) * x/n;//неправильно понято условие задачи
             pm*= -1;
         }
         System.out.println(res);
@@ -459,13 +459,13 @@ public class Main {
         System.out.println(res);
     }
 
-    //    Упражнение 29 б)
+    //    Упражнение 29 б)//-
     private static void e29b(){
         final double E = 0.0001;
         int n = 2;
         double  t1 = Math.cos(0),
                 t2 = Math.cos(t1);
-        while(Math.abs(t1*t2)> E){
+        while(Math.abs(t1*t2)> E){//????
             t1 = t2;
             t2 = Math.cos(t1);
             n++;
@@ -474,13 +474,13 @@ public class Main {
     }
 
 
-    //    Упражнение 29 a)
+    //    Упражнение 29 a)//-
     private static void e29a(){
         final double E = 0.0001;
         int n = 2;
         double  t1 = 0.5,
                 t2 = (t1+1)/(t1+2);
-        while(Math.abs(t1*t2) > E){
+        while(Math.abs(t1*t2) > E){//?????
             t1 = t2;
             t2 = (t1+1)/(t1+2);
             n++;
@@ -594,3 +594,4 @@ public class Main {
         System.out.println("x = " + xk + " y = " + yk);
     }
 }
+//те задачи, которые не помечены знаком "-", зачтены
