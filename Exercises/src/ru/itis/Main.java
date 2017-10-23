@@ -473,6 +473,21 @@ public class Main {
         System.out.println(n);
     }
 
+
+    //    Упражнение 29 a)
+    private static void e29a(){
+        final double E = 0.0001;
+        int n = 2;
+        double  t1 = 0.5,
+                t2 = (t1+1)/(t1+2);
+        while(Math.abs(t1*t2) > E){
+            t1 = t2;
+            t2 = (t1+1)/(t1+2);
+            n++;
+        }
+        System.out.println(n);
+    }
+
     //    Упражнение 27
     private static void e27(){
         final double E = 0.0001;
