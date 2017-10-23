@@ -83,13 +83,10 @@ public class Main {
         System.out.println("Введите n: ");
         int m = s.nextInt();
         int i = 2;
-        int t1 = 1;
-        int t2 = 2;
         double res = 0, t = 0.5;
-        while (i <= m) {//TODO узнать что не так.
-            t1 *= (i - 1);
-            t2 *= (2 * i - 1) * 2 * i;
-            res += Math.pow(t1, 2) / t2;
+        while (i <= m) {
+            t *= Math.pow(i - 1, 2) / (2 * i - 1) * 2 * i;
+            res += t;
             i++;
         }
         System.out.println(res);
@@ -487,6 +484,26 @@ public class Main {
             a = a*(1 + b);
             b = b*b;
         }
+        System.out.println(a);
+    }
+
+    //    Упражнение 28
+    private static void e28(){
+
+        final double E = 0.0001;
+        System.out.println("Введите x при 0 < x < 2: ");
+        double  x = s.nextDouble(),
+                a = x,
+                b = 1.0 - x;
+        if(x <= 0 || x >= 2){
+            System.out.println("x <= 0 или x >= 2");
+            return;
+        }
+        while(Math.abs(b)>E){
+            a = a * (1.0 + b/2);
+            b = b * b * (3.0 + b);
+        }
+        System.out.println(a);
         System.out.println(a);
     }
 }
