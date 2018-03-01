@@ -1,8 +1,5 @@
 package ru.itis;
 
-/**
- * Created by Admon on 08.02.2018.
- */
 public class Circle {
     private int radius;
     private int points;

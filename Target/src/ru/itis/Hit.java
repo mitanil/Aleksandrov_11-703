@@ -2,9 +2,6 @@ package ru.itis;
 
 import java.security.cert.X509Certificate;
 
-/**
- * Created by Admon on 08.02.2018.
- */
 public class Hit {
     private int corX;
     private int corY;
