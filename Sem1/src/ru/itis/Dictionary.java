@@ -53,9 +53,17 @@ public class Dictionary implements IDictionary, Iterable{
         }
     }
 
-    Node head = null;
-    Node last = null;
-    int length = 0;
+    private Node head = null;
+    private Node last = null;
+    private int length = 0;
+
+    public Node getHead(){
+        return head;
+    }
+
+    public Node getLast(){
+        return last;
+    }
 
     Dictionary(String filename) throws IOException {
 //        BufferedReader reader = new BufferedReader(new FileReader(filename));
@@ -146,26 +154,14 @@ public class Dictionary implements IDictionary, Iterable{
     @Override
     public String translate(String text) {
         String[] words = text.split(" ");
-        if(length > words.length){
-            Node temp = head;
-            while (temp != null){
-                for(int i = 0; i < words.length; i++){
-                    if(temp.word.equals(words[i])){
-                        words[i] = temp.translatedWord;
-                    }
-                }
-                temp = temp.next;
-            }
-        }else{
+        Node temp = head;
+        while (temp != null){
             for(int i = 0; i < words.length; i++){
-                Node temp = head;
-                while (temp != null) {
-                    if(temp.word.equals(words[i])){
-                        words[i] = temp.translatedWord;
-                    }
-                    temp = temp.next;
+                if(temp.word.equals(words[i])){
+                    words[i] = temp.translatedWord;
                 }
             }
+            temp = temp.next;
         }
         String result = "";
         for(String str : words){
