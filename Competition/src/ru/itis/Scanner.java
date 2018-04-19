@@ -28,6 +28,7 @@ public class Scanner {
 
     public int nextInt() {
         int res = 0;
+        int minus = 1;
         boolean isRead = false;
         try {
             int temp = fileInputStream.read();
@@ -35,12 +36,12 @@ public class Scanner {
                 int f = temp - '0';
                 if ((char) temp < '0' || (char) temp > '9') {
                     if(temp == '-' && !isRead){
-                        res = -1;
+                        minus = -1;
                     }else
                     throw new NumberFormatException();
                 } else {
-                    isRead = true;
                     res = res * 10 + f;
+                    isRead = true;
                 }
                 temp = fileInputStream.read();
             }
@@ -49,6 +50,7 @@ public class Scanner {
         }
         if(!isRead)
             throw new NumberFormatException();
+        res *= minus;
         return res;
     }
 }
