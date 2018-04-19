@@ -9,6 +9,5 @@ public class Main {
         System.out.println(s.nextInt());
         System.out.println(s.nextInt());
         System.out.println(s.nextInt());
-        System.out.println(s.nextInt());
     }
 }

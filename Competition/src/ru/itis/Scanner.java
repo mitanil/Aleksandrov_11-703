@@ -28,13 +28,18 @@ public class Scanner {
 
     public int nextInt() {
         int res = 0;
+        boolean isRead = false;
         try {
             int temp = fileInputStream.read();
             while (temp != -1 && (char) temp != ' ') {
                 int f = temp - '0';
                 if ((char) temp < '0' || (char) temp > '9') {
+                    if(temp == '-' && !isRead){
+                        res = -1;
+                    }else
                     throw new NumberFormatException();
                 } else {
+                    isRead = true;
                     res = res * 10 + f;
                 }
                 temp = fileInputStream.read();
@@ -42,6 +47,8 @@ public class Scanner {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        if(!isRead)
+            throw new NumberFormatException();
         return res;
     }
 }
