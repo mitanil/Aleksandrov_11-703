@@ -12,8 +12,12 @@ public class Stream<T extends Comparable<T>> {
         list = ts;
     }
 
-    public Stream<T> map(Function<T, T> c){
-        return new Stream<T>(list);
+    public Stream<T> map(Function<T, T> c) {
+        LinkedList<T> newList = new LinkedList<>();
+        for(T t: list){
+            newList.add(c.apply(t));
+        }
+        return new Stream<T>(newList);
     }
 
     public Stream sorted(){

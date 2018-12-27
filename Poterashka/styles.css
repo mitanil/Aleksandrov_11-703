@@ -1,0 +1,8 @@
+.main-btn{
+    height: 100px;
+    font-size: 25px;
+    border-right-style: solid;
+    border-color: black;
+    border-radius: 0;
+    background-color: white;
+}

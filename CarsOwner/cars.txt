@@ -1,0 +1,15 @@
+1 uaz 1
+2 lada 2
+3 ferari 2
+4 BMW 2
+5 car1 4
+6 car 5
+7 car 5
+8 car 5
+9 car 5
+10 car 6
+11 car 6
+12 car 7
+13 car 8
+14 car 10
+

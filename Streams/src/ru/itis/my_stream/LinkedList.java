@@ -268,14 +268,14 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
     }
 
     public T[] toArray(){
-        T[] array = (T[]) new Object[count];
+        Comparable<?>[] array = new Comparable[count];
 
         Node temp = head;
         for(int i = 0; i < count; i++){
             array[i] = temp.value;
             temp = temp.next;
         }
-        return array;
+        return (T[])array;
     }
 
     @Override
