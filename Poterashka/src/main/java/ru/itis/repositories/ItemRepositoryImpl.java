@@ -1,5 +1,6 @@
 package ru.itis.repositories;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import ru.itis.models.Category;
@@ -16,10 +17,10 @@ public class ItemRepositoryImpl implements ItemRepository{
 
     private static final String SQL_FIND_ITEM_BY_NAME = "SELECT * FROM item WHERE item_name LIKE ?;";
     private static final String SQL_GET_ALL_ITEMS_NOT_IN_ORDER = "SELECT item.* FROM item EXCEPT (SELECT item.* FROM item JOIN \"order\" o on item.item_id = o.item_id WHERE o.is_close = FALSE)";
+    @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public ItemRepositoryImpl(DataSource dataSource){
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
+    public ItemRepositoryImpl(){
 
     }
 

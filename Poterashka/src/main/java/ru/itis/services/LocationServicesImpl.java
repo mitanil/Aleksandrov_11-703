@@ -1,16 +1,17 @@
 package ru.itis.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import ru.itis.models.Building;
 import ru.itis.models.Location;
 import ru.itis.repositories.LocationRepository;
 
 import java.util.List;
 
-public class LocationServicesImpl implements LocationServices{
+public class LocationServicesImpl implements LocationServices {
+    @Autowired
     LocationRepository locationRepository;
 
-    public LocationServicesImpl(LocationRepository locationRepository){
-        this.locationRepository = locationRepository;
+    public LocationServicesImpl() {
     }
 
     public Building createBuilding(String name, String address) {
@@ -48,7 +49,7 @@ public class LocationServicesImpl implements LocationServices{
 
     @Override
     public Building getBuildingByLocation(Integer locationId) {
-        if(locationId == null) return null;
+        if (locationId == null) return null;
         return locationRepository.getBuildingByLocation(locationId);
     }
 

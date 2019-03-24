@@ -1,5 +1,6 @@
 package ru.itis.repositories;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -32,7 +33,14 @@ public class LocationRepositoryImpl implements LocationRepository{
     private static final String SQL_GET_LOCATION_BY_ID = "SELECT * FROM location WHERE location_id = ?";
     private static final String SQL_GET_BUILDING_BY_ID = "SELECT * FROM building WHERE building_id = ?";
     private static final String SQL_GET_BUILDING_BY_LOCATION_ID = "SELECT building.* FROM building JOIN location l on building.building_id = l.building_parent WHERE location_id = ?";
+
+
+
+    @Autowired
     private JdbcTemplate jdbcTemplate;
+
+
+
     private RowMapper<Location> locationRowMapper = ((resultSet, i) -> Location.builder()
             .locationId(resultSet.getInt("location_id"))
             .building(resultSet.getInt("building_parent"))
@@ -47,8 +55,7 @@ public class LocationRepositoryImpl implements LocationRepository{
             .build());
 
 
-    public LocationRepositoryImpl(DataSource dataSource){
-        jdbcTemplate = new JdbcTemplate(dataSource);
+    public LocationRepositoryImpl(){
     }
 
     //    language=sql

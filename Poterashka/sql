@@ -1,0 +1,180 @@
+create sequence client_client_id_seq
+  as integer
+  maxvalue 2147483647;
+
+alter sequence client_client_id_seq owner to postgres;
+
+create sequence categorys_id_seq
+  as integer
+  maxvalue 2147483647;
+
+alter sequence categorys_id_seq owner to postgres;
+
+create sequence locations_id_seq
+  as integer
+  maxvalue 2147483647;
+
+alter sequence locations_id_seq owner to postgres;
+
+create sequence items_id_seq
+  as integer
+  maxvalue 2147483647;
+
+alter sequence items_id_seq owner to postgres;
+
+create sequence order_order_id_seq
+  as integer
+  maxvalue 2147483647;
+
+alter sequence order_order_id_seq owner to postgres;
+
+create sequence building_building_id_seq;
+
+alter sequence building_building_id_seq owner to postgres;
+
+create table client
+(
+  client_id       integer default nextval('client_client_id_seq'::regclass) not null
+    constraint client_pkey
+      primary key,
+  client_name     varchar(40)                                               not null,
+  client_login    varchar(40)                                               not null,
+  client_password varchar(200)                                              not null
+);
+
+alter table client
+  owner to postgres;
+
+create unique index client_client_id_uindex
+  on client (client_id);
+
+create unique index client_client_name_uindex
+  on client (client_name);
+
+create unique index client_client_login_uindex
+  on client (client_login);
+
+create table building
+(
+  building_id   integer default nextval('building_building_id_seq'::regclass) not null
+    constraint buildings_pkey
+      primary key,
+  building_name varchar(40)                                                   not null,
+  address       varchar(40)                                                   not null
+);
+
+alter table building
+  owner to postgres;
+
+create unique index buildings_building_id_uindex
+  on building (building_id);
+
+create unique index buildings_building_name_uindex
+  on building (building_name);
+
+create unique index buildings_address_uindex
+  on building (address);
+
+create table category
+(
+  category_id   integer default nextval('categorys_id_seq'::regclass) not null
+    constraint categorys_pkey
+      primary key,
+  category_name varchar(40)                                           not null
+);
+
+alter table category
+  owner to postgres;
+
+create unique index categorys_id_uindex
+  on category (category_id);
+
+create unique index categorys_category_name_uindex
+  on category (category_name);
+
+create table location
+(
+  location_id     integer default nextval('locations_id_seq'::regclass) not null
+    constraint locations_pkey
+      primary key,
+  location_name   varchar(40)                                           not null,
+  building_parent integer                                               not null
+    constraint locations_buildings_building_id_fk
+      references building,
+  location_parent integer
+    constraint location_location_location_id_fk
+      references location
+);
+
+alter table location
+  owner to postgres;
+
+create unique index locations_id_uindex
+  on location (location_id);
+
+create unique index location_location_name_uindex
+  on location (location_name);
+
+create table item
+(
+  item_id     integer default nextval('items_id_seq'::regclass) not null
+    constraint items_pkey
+      primary key,
+  item_name   varchar(40)                                       not null,
+  category_id integer                                           not null
+    constraint item_category_category_id_fk
+      references category,
+  owner_id    integer
+    constraint items_clients_client_id_fk
+      references client,
+  description text,
+  image       varchar(400)
+);
+
+alter table item
+  owner to postgres;
+
+create unique index items_id_uindex
+  on item (item_id);
+
+create unique index item_item_name_uindex
+  on item (item_name);
+
+create table "order"
+(
+  order_id    integer default nextval('order_order_id_seq'::regclass) not null
+    constraint order_pkey
+      primary key,
+  item_id     integer                                                 not null
+    constraint order_item_item_id_fk
+      references item,
+  user_find   integer
+    constraint order_clients_client_id_fk
+      references client,
+  place_lost  integer                                                 not null
+    constraint order_location_location_id_fk
+      references location,
+  destination integer
+    constraint order_location_location_id_fk_2
+      references location,
+  description text,
+  is_close    boolean default false                                   not null
+);
+
+alter table "order"
+  owner to postgres;
+
+create unique index order_order_id_uindex
+  on "order" (order_id);
+
+create table auth
+(
+  uuid      varchar(200),
+  client_id integer
+    constraint auth_clients_client_id_fk
+      references client
+);
+
+alter table auth
+  owner to postgres;
+

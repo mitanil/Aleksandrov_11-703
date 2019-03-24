@@ -1,14 +1,18 @@
 package ru.itis.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import ru.itis.models.Order;
 import ru.itis.repositories.OrderRepository;
 
 import java.util.List;
 
 public class OrderServicesImpl implements OrderServices{
+
+
+
+    @Autowired
     OrderRepository orderRepository;
-    public OrderServicesImpl(OrderRepository orderRepository){
-        this.orderRepository = orderRepository;
+    public OrderServicesImpl(){
     }
 
     public Order getOrder(Integer item) {

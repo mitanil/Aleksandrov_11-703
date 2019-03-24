@@ -1,6 +1,7 @@
 package ru.itis.Filter;
 
 import lombok.SneakyThrows;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import ru.itis.repositories.ClientRepositoryImpl;
@@ -17,6 +18,7 @@ import java.io.IOException;
 @WebFilter(urlPatterns = {"/home, /profile, /order, /missing"})
 public class AuthFilter implements Filter {
 
+    @Autowired
     ClientServices clientServices;
 
     @Override
@@ -28,7 +30,6 @@ public class AuthFilter implements Filter {
         dataSource.setPassword("");
         dataSource.setUrl("jdbc:postgresql://localhost:5432/poterashka");
 
-        clientServices = new ClientServicesImpl(new ClientRepositoryImpl(dataSource), new BCryptPasswordEncoder());
     }
 
     @Override

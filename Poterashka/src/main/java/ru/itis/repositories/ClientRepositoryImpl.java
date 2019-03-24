@@ -1,5 +1,6 @@
 package ru.itis.repositories;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import ru.itis.models.Client;
@@ -10,10 +11,11 @@ import java.sql.SQLException;
 public class ClientRepositoryImpl implements ClientRepository {
 
 
+    @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public ClientRepositoryImpl(DataSource dataSource){
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
+    public ClientRepositoryImpl(){
+
     }
 
 

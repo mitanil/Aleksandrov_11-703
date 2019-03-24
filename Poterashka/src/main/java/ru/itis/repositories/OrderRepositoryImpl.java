@@ -1,5 +1,6 @@
 package ru.itis.repositories;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -32,10 +33,10 @@ public class OrderRepositoryImpl implements OrderRepository{
     private static final String SQL_GET_ORDER_BY_ID = "SELECT * FROM \"order\" WHERE order_id = ?";
     private static final String SQL_ADD_CURRENT_LOCATION = "UPDATE \"order\" SET destination = ? WHERE order_id=?";
 
+    @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public OrderRepositoryImpl(DataSource dataSource){
-        jdbcTemplate = new JdbcTemplate(dataSource);
+    public OrderRepositoryImpl(){
     }
 
     RowMapper<Order> orderRowMapper = ((resultSet, i) -> Order.builder()

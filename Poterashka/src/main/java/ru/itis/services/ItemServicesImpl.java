@@ -1,5 +1,6 @@
 package ru.itis.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import ru.itis.models.Category;
 import ru.itis.models.Client;
 import ru.itis.models.Item;
@@ -9,12 +10,12 @@ import java.util.List;
 
 public class ItemServicesImpl implements ItemServices{
 
+    @Autowired
     ItemRepository itemRepository;
 
 
 
-    public ItemServicesImpl(ItemRepository itemRepository){
-        this.itemRepository = itemRepository;
+    public ItemServicesImpl(){
     }
 
 

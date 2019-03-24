@@ -1,5 +1,6 @@
 package ru.itis.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import ru.itis.models.Client;
 import ru.itis.repositories.ClientRepository;
@@ -8,12 +9,13 @@ import java.util.UUID;
 
 public class ClientServicesImpl implements ClientServices{
 
+    @Autowired
     private ClientRepository clientRepository;
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public ClientServicesImpl(ClientRepository clientRepository, PasswordEncoder passwordEncoder) {
-        this.clientRepository = clientRepository;
-        this.passwordEncoder = passwordEncoder;
+    public ClientServicesImpl() {
     }
 
     @Override

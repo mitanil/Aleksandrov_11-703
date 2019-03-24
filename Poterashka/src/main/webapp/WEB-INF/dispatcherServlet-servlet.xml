@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+    <context:annotation-config/>
+    <mvc:annotation-driven/>
+    <context:component-scan base-package="ru.itis"/>
+
+    <mvc:resources mapping="/assets/**" location="WEB-INF/assets"/>
+
+    <bean id="clientService" class="ru.itis.services.ClientServicesImpl"/>
+    <bean id="orderService" class="ru.itis.services.OrderServicesImpl"/>
+    <bean id="itemService" class="ru.itis.services.ItemServicesImpl"/>
+    <bean id="locationService" class="ru.itis.services.LocationServicesImpl"/>
+
+
+    <bean id="clientRepository" class="ru.itis.repositories.ClientRepositoryImpl"/>
+    <bean id="orderRepository" class="ru.itis.repositories.OrderRepositoryImpl"/>
+    <bean id="itemRepository" class="ru.itis.repositories.ItemRepositoryImpl"/>
+    <bean id="locationRepository" class="ru.itis.repositories.LocationRepositoryImpl"/>
+
+
+
+    <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPath" value="/WEB-INF/views/ftl/"/>
+    </bean>
+
+
+    <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <constructor-arg ref="dataSource"/>
+    </bean>
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.postgresql.Driver"/>
+        <property name="url" value="jdbc:postgresql://localhost:5432/poterashka"/>
+        <property name="username" value="postgres"/>
+        <property name="password" value=""/>
+    </bean>
+
+
+</beans>
