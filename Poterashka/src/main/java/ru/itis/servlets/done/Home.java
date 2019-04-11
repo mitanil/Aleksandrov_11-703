@@ -1,4 +1,4 @@
-package ru.itis.servlets;
+package ru.itis.servlets.done;
 
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;

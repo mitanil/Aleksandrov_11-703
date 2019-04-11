@@ -17,4 +17,5 @@ public interface OrderServices {
     Order getOrderById(Integer orderId);
 
     void addCurrentLocation(Integer orderId, Integer locationId);
+
 }

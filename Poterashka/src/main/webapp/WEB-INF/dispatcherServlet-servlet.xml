@@ -17,7 +17,7 @@
     <mvc:resources mapping="/assets/**" location="WEB-INF/assets"/>
 
     <bean id="clientService" class="ru.itis.services.ClientServicesImpl"/>
-    <bean id="orderService" class="ru.itis.services.OrderServicesImpl"/>
+    <bean id="orderServices" class="ru.itis.services.OrderServicesImpl"/>
     <bean id="itemService" class="ru.itis.services.ItemServicesImpl"/>
     <bean id="locationService" class="ru.itis.services.LocationServicesImpl"/>
 
@@ -26,6 +26,14 @@
     <bean id="orderRepository" class="ru.itis.repositories.OrderRepositoryImpl"/>
     <bean id="itemRepository" class="ru.itis.repositories.ItemRepositoryImpl"/>
     <bean id="locationRepository" class="ru.itis.repositories.LocationRepositoryImpl"/>
+
+
+    <bean id="freeMarkerViewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <property name="cache" value="true"/>
+        <property name="prefix" value=""/>
+        <property name="suffix" value=".ftl"/>
+        <property name="contentType" value="text/html; charset=UTF-8"/>
+    </bean>
 
 
 
